@@ -1,0 +1,160 @@
+<!-- Simple Rock Paper Scissors game with the computer -->
+
+<!DOCTYPE html>
+<html>
+<head>
+<title> GAME </title>
+</head>
+<body>
+<center>
+<h1> ROCK PAPER SCISSORS!</h1>
+<p id="welcome">Welcome to the rock paper scissors game. First to reach 5 points will win the game </p>
+<br>
+<div id="points">
+<label> Me: </label>
+<span id="com"> 0 </span>
+<label> You: </label>
+<span id="user">0</span>
+</div>
+<br>
+<br>
+	<div id="choices">
+	<button id="rock"> <img src="https://th.bing.com/th/id/R.be307eed7f926cd452d95f0d733e559b?rik=eFcj4LO6vKfyyA&riu=http%3a%2f%2fclipartsign.com%2fupload%2f2016%2f02%2f17%2frock-clipart.png&ehk=C6u1d6lgs8UtlbN5M0PO%2fddTebjaCj2PxR%2fkrskOZmU%3d&risl=&pid=ImgRaw&r=0" alt="Rock" width="100" height="95"> </button>
+	<button id="paper"> <img src="https://cdn0.iconfinder.com/data/icons/rock-paper-scissors-emoji/792/rock-paper-scissors-emoji-cartoon-005-512.png" alt="Paper" width="100" height="95"></button>
+	<button id="sc"> <img src="https://th.bing.com/th/id/R.171cc3d8a7d7d3e5267f49bc37f6073d?rik=nbDMkB6thz6uWA&riu=http%3a%2f%2fpluspng.com%2fimg-png%2fcartoon-scissors-png-hd-cartoon-scissors-material-cartoon-scissors-material-expression-scissors-png-image-260.jpg&ehk=IPIIMsoMpqhQcoqckS9O17pQRQi3J%2bDIXcx%2f1T8YVQY%3d&risl=&pid=ImgRaw&r=0" alt="Scissors" width="100" height="95"> </button>
+<br>
+<br>
+<p>MY CHOICE:</p><p id="ans"></p>
+<p id="poin"></p>
+</div>
+</center>
+<script>
+function answer() {
+ var rand=Math.floor(Math.random()*3);
+ if(rand==0) {
+  document.getElementById('ans').innerHTML="Rock";
+}
+ else if(rand==1) {
+  document.getElementById('ans').innerHTML="Paper";
+}
+ else {
+  document.getElementById('ans').innerHTML="Scissors";
+}
+return rand;
+}
+c=0;
+u=0;
+document.getElementById('rock').addEventListener('click', ()=>{ let x=answer();
+if(x==1) {
+document.getElementById('poin').innerHTML="I WIN THE POINT!";
+c+=1
+document.getElementById('com').innerHTML=c;
+if(c>=5){
+alert("GAME OVER! I WIN");
+document.write("REFRESH TO PLAY AGAIN");
+}
+}
+else if(x==2) {
+document.getElementById('poin').innerHTML="U WIN THE POINT!";
+u+=1;
+document.getElementById('user').innerHTML=u;
+if(u>=5){
+alert("GAME OVER! YOU WIN");
+document.write("REFRESH TO PLAY AGAIN");
+}
+}
+else {
+document.getElementById('poin').innerHTML="ALRIGHT IT'S A DRAW";
+}
+});
+document.getElementById('paper').addEventListener('click', ()=>{ let x=answer();
+if(x==2) {
+document.getElementById('poin').innerHTML="I WIN THE POINT!";
+c+=1
+document.getElementById('com').innerHTML=c;
+if(c>=5){
+alert("GAME OVER! I WIN");
+document.write("REFRESH TO PLAY AGAIN");
+}
+}
+else if(x==0) {
+document.getElementById('poin').innerHTML="U WIN THE POINT!";
+u+=1;
+document.getElementById('user').innerHTML=u;
+if(u>=5){
+alert("GAME OVER! YOU WIN");
+document.write("REFRESH TO PLAY AGAIN");
+}
+}
+else {
+document.getElementById('poin').innerHTML="ALRIGHT IT'S A DRAW";
+}
+});
+document.getElementById('sc').addEventListener('click', ()=>{ 
+let x=answer();
+if(x==0) {
+document.getElementById('poin').innerHTML="I WIN THE POINT!";
+c+=1
+document.getElementById('com').innerHTML=c;
+if(c>=5){
+alert("GAME OVER! I WIN");
+document.write("REFRESH TO PLAY AGAIN");
+}
+}
+else if(x==1) {
+document.getElementById('poin').innerHTML="U WIN THE POINT!";
+u+=1;
+document.getElementById('user').innerHTML=u;
+if(u>=5){
+alert("GAME OVER! YOU WIN");
+document.write("REFRESH TO PLAY AGAIN");
+
+}
+}
+else {
+document.getElementById('poin').innerHTML="ALRIGHT IT'S A DRAW";
+}
+});
+</script>
+<style>
+body{
+background-color:#D3D3D3;
+}
+h1 {
+font-size:50px;
+}
+#welcome{
+font-size:30px;
+font-family: Brush Script MT;
+}
+#points {
+font-size:20px;
+font-family:Cursive;
+}
+#points span{
+background: #000000;
+color:#FFFFFF;
+padding:10px;
+width:55px;
+margin:3px;
+display:inline-block;
+box-shadow:6px -6px 8px #9d9d9d, -6px 6px 8px #ffffff;
+}
+#choices button{
+width:auto;
+height:auto;
+font-size:30px;
+}
+p{
+font-size:20px;
+font-family:Cursive;
+}
+#ans{
+font-family:Serif;
+}
+#poin{
+text-shadow: 6px -6px 8px #000000, -6px 6px 8px #E11584;
+}
+</style>
+</body>
+</html>
