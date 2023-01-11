@@ -1,0 +1,184 @@
+<!-- Designing a clock application using HTML,CSS and JAVASCRIPT. Initially, a welcome page is displayed showing two options-Time and Stopwatch. 
+The time displays a digital clock showing the current time in a 24-hours format. The stop watch displays three buttons-start,pause and reset and has three blocks to display the hours, minutes and seconds. 
+The start button lets us start the counting, The pause button lets us pause the counting And the reset button lets us reset the counting back to zero. -->
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset = "utf-8">
+<title> Clock </title>
+</head>
+<body>
+<center>
+<h1 id="headin"> WELCOME <h1>
+<div id="digiclock" style="display:none"></div>
+<div id="main" style="display:none">
+<div class="mainTime">
+<span id="mainminute">00</span>
+<span id="mainsecond">00</span>
+<span id="milliseconds">00</span>
+</div>
+<br>
+<button id="start" class="options">
+<iconify-icon icon="clarity:play-solid"></iconify-icon>
+</button>
+<button id="stop" class="options">
+<iconify-icon icon="ci:pause-circle-filled"></iconify-icon>
+</button>
+<button id="reset" >
+<iconify-icon icon="fluent:arrow-reset-24-filled"></iconify-icon>
+</button>
+</div>
+<script src="https://code.iconify.design/iconify-icon/1.0.0-beta.3/iconify-icon.min.js"></script>
+<button onclick="timi()">Time</button>
+<button onclick="stop()">StopWatch</button>
+
+</center>
+<script>
+function stop() {
+document.getElementById("headin").style.color="black";
+document.getElementById('main').style.display='block';
+document.body.style.backgroundAttachment=("fixed");
+document.body.style.backgroundRepeat=("repeat");
+document.getElementById('digiclock').style.display='none';
+document.body.style.backgroundImage="url('https://thumbs.dreamstime.com/b/car-wheel-stopwatch-isolated-blue-background-car-wheel-stopwatch-108126012.jpg')";
+document.body.style.backgroundAttachment=("fixed");
+document.body.style.backgroundSize=("100% 100%");
+document.body.style.backgroundRepeat=("no-repeat");
+document.getElementById("headin").innerHTML="StopWatch:";
+}
+function timi() {
+document.getElementById("headin").style.color="black";
+document.getElementById('main').style.display='none';
+document.getElementById('digiclock').style.display='block';
+document.body.style.backgroundImage="url('https://www.pixelstalk.net/wp-content/uploads/images2/Screen-pictures-clocks-wallpaper.jpg')";
+document.body.style.backgroundAttachment=("fixed");
+document.body.style.backgroundSize=("100% 100%");
+document.body.style.backgroundRepeat=("no-repeat");
+document.getElementById("headin").innerHTML="Current Time:";
+}
+function Time() {
+var date = new Date();
+var hour=date.getHours();
+var min = date.getMinutes();
+var sec=date.getSeconds();
+var period="";
+if(hour>12) {
+	period="PM";
+}
+else {
+	period="AM"
+}
+
+hour=update(hour);
+min=update(min);
+sec=update(sec);
+document.getElementById('digiclock').innerText = hour+":"+min+":"+sec+" "+period;
+//setting timer to 1 sec=1000ms;
+setTimeout(Time,1000);
+}
+function update(t) {
+if (t<10) {
+	return "0"+t;
+}
+else {
+	return t;
+}
+}
+Time();
+let [milliseconds,second,minute,] = [0,0,0];
+let timerRef = document.querySelector('.mainTime');
+let int = null;
+document.getElementById('start').addEventListener('click', ()=>{if(int!==null){
+clearInterval(int);
+}
+int = setInterval(mainTime,1000);
+});
+document.getElementById('stop').addEventListener('click', ()=>{
+clearInterval(int);
+});
+document.getElementById('reset').addEventListener('click', ()=>{clearInterval(int);
+[milliseconds,seconds,minutes,hours] = [0,0,0];
+timerRef.innerHTML = '00 : 00 : 00';
+});
+function mainTime(){
+milliseconds+=1;
+if(milliseconds == 60){
+milliseconds = 0;
+second++;
+if(second == 60){
+second = 0;
+minute++;
+if(minute == 12){
+minute = 0;
+}
+}
+}
+let m = minute < 10 ? "0" + minute : minute;
+let s = second < 10 ? "0" + second : second;
+let ms = milliseconds < 10 ? "0" + milliseconds : milliseconds;
+timerRef.innerHTML = ` ${m} : ${s} : ${ms}`;
+}
+</script>
+<style>
+body{
+background-image:url("https://thumbs.dreamstime.com/z/clock-icon-isolated-abstract-blue-background-illustration-design-clock-icon-abstract-blue-background-illustration-design-167323346.jpg");
+background-repeat:no repeat;
+}
+#digiclock{
+background-color:#000000;
+color:#fff;
+width:40%;
+margin:100px auto;
+padding:50px 0;
+font-size: 80px;
+display:flex;
+justify-content:center;
+text-align:center;
+}
+#main{
+width: 400px;
+height: 40vh;
+margin:100px auto;
+padding:60px 50px 10px;
+text-align:center;
+font-size: 40px;
+background: #e0e0e0;
+border-radius:40px;
+}
+#main span{
+background: #c7e0f8;
+color:#0776de;
+padding:10px;
+width:55px;
+margin:3px;
+display:inline-block;
+background:#e0e0e0;
+box-shadow:6px -6px 8px #9d9d9d, -6px 6px 8px #ffffff;
+}
+#main button {
+background-color: #2e80b3;
+color:white;
+width:80px;
+height:50px;
+font-size:30px;
+border-radius:50px;
+transition:0.2s;
+} 
+#main button:hover{
+background:#333;
+color:#e0e0e0;
+border-radius:35px;
+transition: 0.2s;
+}
+button {
+height:50px;
+font-size:30px;
+}
+#headin {
+font-size:48px;
+color:lightblue;
+}
+</style>
+</body>
+</html>
